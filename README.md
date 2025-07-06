@@ -1,70 +1,110 @@
-# Getting Started with Create React App
+# ระบบขนส่งไปไหน ไปไหน
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ระบบขนส่งสำหรับนักศึกษาที่ต้องการความสะดวกสบายในการเดินทาง
 
-## Available Scripts
+## การติดตั้ง
 
-In the project directory, you can run:
+### ความต้องการของระบบ
+- Node.js
+- MySQL
+- XAMPP หรือ phpMyAdmin
 
-### `npm start`
+### ขั้นตอนการติดตั้ง
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone โปรเจค
+```bash
+git clone <repository-url>
+cd <project-folder>
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. ติดตั้ง Dependencies สำหรับ Backend
+```bash
+cd backend
+npm install
+```
 
-### `npm test`
+3. ติดตั้ง Dependencies สำหรับ Frontend
+```bash
+cd ../frontend
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. สร้างฐานข้อมูล
+- เปิด phpMyAdmin
+- นำเข้าไฟล์ `backend/database.sql`
 
-### `npm run build`
+5. ตั้งค่าไฟล์ .env ใน backend
+```
+PORT=5000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=transport_db
+JWT_SECRET=your-secret-key
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+6. สร้างโฟลเดอร์ uploads ใน backend
+```bash
+cd backend
+mkdir uploads
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### การเริ่มต้นใช้งาน
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. เริ่ม Backend Server
+```bash
+cd backend
+nodemon .\server.js
+```
 
-### `npm run eject`
+2. เริ่ม Frontend Server
+```bash
+cd frontend
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+เว็บไซต์จะทำงานที่ http://localhost:3000
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## ผู้ใช้ระบบ
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. นักศึกษา
+- สามารถลงทะเบียนและเข้าสู่ระบบ
+- สร้างการเดินทาง
+- ดูประวัติการเดินทาง
+- ให้คะแนนไรเดอร์
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. ไรเดอร์
+- สามารถลงทะเบียนและเข้าสู่ระบบ
+- อัปเดตสถานะการทำงาน
+- รับงานขนส่ง
+- ดูประวัติการขนส่ง
+- ได้รับคะแนนจากผู้ใช้
 
-## Learn More
+3. แอดมิน
+- เข้าสู่ระบบด้วย:
+  - Email: admin@admin.com
+  - Password: admin123
+- จัดการข้อมูลผู้ใช้
+- อนุมัติไรเดอร์
+- ดูรายงานต่างๆ
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## โครงสร้างโปรเจค
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+project/
+├── backend/
+│   ├── routes/
+│   ├── middleware/
+│   ├── uploads/
+│   ├── server.js
+│   └── database.sql
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── context/
+│   │   └── utils/
+│   └── public/
+└── README.md
+``` 
